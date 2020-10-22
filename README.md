@@ -1,5 +1,5 @@
 # Coords
- Linear funktion solver I made in a day while being sick for school. 21th October 2020
+ Linear funktion solver I made in a day while being sick for school. 21st October 2020
 
 
 

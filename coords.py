@@ -1,9 +1,26 @@
 import pygame, random
+
 pygame.init()
 
 rows = 50
 xy = 500
-c = [(input('Your x1(0-50) value here: '), input('Your y1(0-50) value here: ')), (input('Your x2(0-50) value here: '), input('Your y2(0-50) value here: '))]
+d = False
+
+while True:
+    d = input('Random points? (Y or N) ')
+    if d.lower() == 'y':
+        d = True
+        break
+    elif d.lower() == 'n':
+        break
+    else:
+        continue
+
+if not d:
+    c = [(input('Your x1(0-50) value here: '), input('Your y1(0-50) value here: ')),
+        (input('Your x2(0-50) value here: '), input('Your y2(0-50) value here: '))]
+else:
+    c = [(random.randrange(0, 50), random.randrange(0, 50)), (random.randrange(0, 50), random.randrange(0, 50))]
 
 win = pygame.display.set_mode((xy, xy))
 pygame.display.set_caption("Coords")
@@ -18,16 +35,16 @@ def redrawWin():
 
 
 def calculator(coords):
-    yy = int(coords[1][1])-int(coords[0][1])
-    xx = int(coords[1][0])-int(coords[0][0])
+    yy = int(coords[1][1]) - int(coords[0][1])
+    xx = int(coords[1][0]) - int(coords[0][0])
     m = yy / xx
     return m
 
 
 def getYpoint():
     m = calculator(c)
-    b = (int(c[0][1])*10)-(int(c[0][0])*m)*10
-    return b/10
+    b = (int(c[0][1]) * 10) - (int(c[0][0]) * m) * 10
+    return b / 10
 
 
 def drawGrid(win, rows, xy):
@@ -46,11 +63,11 @@ def drawGrid(win, rows, xy):
 
 def drawLine():
     global c
-    startx = (int(c[0][0])*10)+10000
-    starty = (int(c[0][1])*10)+calculator(c)*10000
-    endx = (int(c[0][0])*10)-10000
-    endy = (int(c[0][1])*10)-calculator(c)*10000
-    pygame.draw.aaline(win, (0, 0, 255), (startx, xy-starty), (endx, xy-endy))
+    startx = (int(c[0][0]) * 10) + 10000
+    starty = (int(c[0][1]) * 10) + calculator(c) * 10000
+    endx = (int(c[0][0]) * 10) - 10000
+    endy = (int(c[0][1]) * 10) - calculator(c) * 10000
+    pygame.draw.aaline(win, (0, 0, 255), (startx, xy - starty), (endx, xy - endy))
 
 
 def main():
@@ -64,6 +81,7 @@ def main():
                 pygame.quit()
 
             redrawWin()
+
 
 print('The Formula F(x) = m*x + b is: ' + str(calculator(c)) + 'x + ' + str(getYpoint()))
 main()

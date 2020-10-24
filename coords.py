@@ -12,6 +12,7 @@ while True:
         d = True
         break
     elif d.lower() == 'n':
+        d = False
         break
     else:
         continue
@@ -19,7 +20,7 @@ while True:
 if not d:
     c = [(input('Your x1(0-50) value here: '), input('Your y1(0-50) value here: ')),
         (input('Your x2(0-50) value here: '), input('Your y2(0-50) value here: '))]
-else:
+elif d:
     c = [(random.randrange(0, 50), random.randrange(0, 50)), (random.randrange(0, 50), random.randrange(0, 50))]
 
 win = pygame.display.set_mode((xy, xy))
